@@ -52,31 +52,28 @@ bu projenin kodunu ekledim ve önemli kısmı açıklayacağım:
 
 ilk önce, kitaplığıdan import 
 
-'''
-from sklearn.metrics import r2_score
-from sklearn.linear_model import LinearRegression
-''' 
+**from sklearn.metrics import r2_score**
+**from sklearn.linear_model import LinearRegression**
+
 
 daha sonra, 
 
 Verileri yükler, ön işleme tabi tutar ve ardından regresyon modelini uygularız. 
 
-'''
-X = np.array(df['YearsExperience']).reshape(-1, 1)
+**X = np.array(df['YearsExperience']).reshape(-1, 1)
 y = df['Salary']
 rf = LinearRegression()
 rf.fit(X, y)
-y_pred = rf.predict(X)
-'''
+y_pred = rf.predict(X)**
+
 
 **C : Regresyon Grafiği :** 
 
 Regresyon modelini uyguladıktan sonra, şimdi verilere uyan en iyi çizgiyi görmek için regresyon grafiğini çizmeliyiz.
 
-'''
-plt.scatter(df['YearsExperience'], df['Salary'])
-plt.plot(X, y_pred, color='red')
-'''
+**plt.scatter(df['YearsExperience'], df['Salary'])
+plt.plot(X, y_pred, color='red')**
+
 ![Result](https://github.com/omarnj-lab/R_Squared_Interpretation-/blob/main/RegressionGraph.png)
 
 **C : R-Kare:** 
@@ -95,9 +92,8 @@ Bu formülü kullanarak sonuç şudur:
 
 Şimdi sklearn kitaplığını kullanarak aynı hesaplamayı yapabiliriz 
 
-'''
-r2_score(y, y_pred)
-'''
+**r2_score(y, y_pred)**
+
 ve sonuç :
 
       0.95695666414
