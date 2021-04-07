@@ -35,15 +35,70 @@ Genel olarak, R kare ne kadar yüksekse, model verilerinize o kadar iyi uyar.
 
 **A : Verileri:**
 
-![Under/Over fitting](https://github.com/omarnj-lab/Display_Model_History-/blob/main/overfit.jpg)
+Aşağıdaki gibi kullanılan veriler:
+1- Birinci Sütun: Çalışanların yıllık tecrübesi içindir.
+2- İkinci Sütun: çalışanların maaşıdır
+
+Amaç:
+
+- DOĞRUSAL REGRESYON MODELİ kullanarak, maaş ve yılların deneyimi arasındaki ilişkiyi incelemeye çalışacağız. 
+
+![DATA](https://github.com/omarnj-lab/R_Squared_Interpretation-/blob/main/Data.png)
+
+**B : Model:** 
+
+bu projenin kodunu ekledim ve önemli kısmı açıklayacağım:
+
+ilk önce, kitaplığıdan import 
+
+`<addr>` from sklearn.metrics import r2_score
+`<addr>` from sklearn.linear_model import LinearRegression
+
+daha sonra, 
+
+Verileri yükler, ön işleme tabi tutar ve ardından regresyon modelini uygularız. 
+
+`<addr>` X = np.array(df['YearsExperience']).reshape(-1, 1)
+`<addr>` y = df['Salary']
+`<addr>` rf = LinearRegression()
+`<addr>` rf.fit(X, y)
+`<addr>` y_pred = rf.predict(X)
+
+**C : Regresyon Grafiği :** 
+
+Regresyon modelini uyguladıktan sonra, şimdi verilere uyan en iyi çizgiyi görmek için regresyon grafiğini çizmeliyiz. 
+
+`<addr>`plt.scatter(df['YearsExperience'], df['Salary'])
+`<addr>`plt.plot(X, y_pred, color='red')
+
+![Result](https://github.com/omarnj-lab/R_Squared_Interpretation-/blob/main/RegressionGraph.png)
+
+**C : R-Kare:** 
+
+- Regresyon grafiğini anlamak için, tahmin yüzdesinin ne olduğunu ve tahmin edilen verilerin gerçek verilere ne kadar yakın olduğunu bilmeliyiz.
+-  Bu nedenle, R kare değerini hesaplayalım >>> 
+
+R-kareyi hesaplamanın yollarından biri şu formülle: 
+     
+     R² = (var(mean) - var(line)) / var(mean)
+     
+Bu formülü kullanarak sonuç şudur: 0.95695666414
 
 
+Şimdi sklearn kitaplığını kullanarak aynı hesaplamayı yapabiliriz 
 
+`<addr>` r2_score(y, y_pred)
 
+ve sonuç : 0.95695666414
 
+Bununla ve daha önce açıkladığımız gibi, R-kare değeri% 95'tir, bu da regresyon çizgisinin çok iyi uyduğunu gösterir.
 
+Bu konuya buradan erişebilir ve daha fazla bilgi edinebilirsiniz: 
 
+https://towardsdatascience.com/statistics-for-machine-learning-r-squared-explained-425ddfebf667
+--------------------------------------------------------------------------------------------------------
 
+Omar Najar.
 
 
 
