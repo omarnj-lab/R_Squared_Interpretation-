@@ -24,7 +24,7 @@ Genel olarak, bir model, gözlemlenen değerler ile modelin tahmin edilen değer
 
 - 0, modelin ortalama çevresindeki yanıt verilerinin hiçbir değişkenliğini açıklamadığını gösterir.
 - 1, modelin ortalama etrafında yanıt verilerinin tüm değişkenliğini açıkladığını gösterir.
-- 
+ 
 Genel olarak, R kare ne kadar yüksekse, model verilerinize o kadar iyi uyar. 
 
 ------------------------------------------------------------------------------------------------
@@ -37,13 +37,14 @@ Genel olarak, R kare ne kadar yüksekse, model verilerinize o kadar iyi uyar.
 
 Aşağıdaki gibi kullanılan veriler:
 1- Birinci Sütun: Çalışanların yıllık tecrübesi içindir.
-2- İkinci Sütun: çalışanların maaşıdır
+2- İkinci Sütun: çalışanların maaşıdır.
 
-Amaç:
+![DATA](https://github.com/omarnj-lab/R_Squared_Interpretation-/blob/main/Data.png)
+
+**Amaç:**
 
 - DOĞRUSAL REGRESYON MODELİ kullanarak, maaş ve yılların deneyimi arasındaki ilişkiyi incelemeye çalışacağız. 
 
-![DATA](https://github.com/omarnj-lab/R_Squared_Interpretation-/blob/main/Data.png)
 
 **B : Model:** 
 
@@ -51,26 +52,31 @@ bu projenin kodunu ekledim ve önemli kısmı açıklayacağım:
 
 ilk önce, kitaplığıdan import 
 
-`<addr>` from sklearn.metrics import r2_score
-`<addr>` from sklearn.linear_model import LinearRegression
+'''
+from sklearn.metrics import r2_score
+from sklearn.linear_model import LinearRegression
+''' 
 
 daha sonra, 
 
 Verileri yükler, ön işleme tabi tutar ve ardından regresyon modelini uygularız. 
 
-`<addr>` X = np.array(df['YearsExperience']).reshape(-1, 1)
-`<addr>` y = df['Salary']
-`<addr>` rf = LinearRegression()
-`<addr>` rf.fit(X, y)
-`<addr>` y_pred = rf.predict(X)
+'''
+X = np.array(df['YearsExperience']).reshape(-1, 1)
+y = df['Salary']
+rf = LinearRegression()
+rf.fit(X, y)
+y_pred = rf.predict(X)
+'''
 
 **C : Regresyon Grafiği :** 
 
-Regresyon modelini uyguladıktan sonra, şimdi verilere uyan en iyi çizgiyi görmek için regresyon grafiğini çizmeliyiz. 
+Regresyon modelini uyguladıktan sonra, şimdi verilere uyan en iyi çizgiyi görmek için regresyon grafiğini çizmeliyiz.
 
-`<addr>`plt.scatter(df['YearsExperience'], df['Salary'])
-`<addr>`plt.plot(X, y_pred, color='red')
-
+'''
+plt.scatter(df['YearsExperience'], df['Salary'])
+plt.plot(X, y_pred, color='red')
+'''
 ![Result](https://github.com/omarnj-lab/R_Squared_Interpretation-/blob/main/RegressionGraph.png)
 
 **C : R-Kare:** 
@@ -82,20 +88,25 @@ R-kareyi hesaplamanın yollarından biri şu formülle:
      
      R² = (var(mean) - var(line)) / var(mean)
      
-Bu formülü kullanarak sonuç şudur: 0.95695666414
+Bu formülü kullanarak sonuç şudur: 
+
+      0.95695666414
 
 
 Şimdi sklearn kitaplığını kullanarak aynı hesaplamayı yapabiliriz 
 
-`<addr>` r2_score(y, y_pred)
+'''
+r2_score(y, y_pred)
+'''
+ve sonuç :
 
-ve sonuç : 0.95695666414
+      0.95695666414
 
 Bununla ve daha önce açıkladığımız gibi, R-kare değeri% 95'tir, bu da regresyon çizgisinin çok iyi uyduğunu gösterir.
 
 Bu konuya buradan erişebilir ve daha fazla bilgi edinebilirsiniz: 
 
-https://towardsdatascience.com/statistics-for-machine-learning-r-squared-explained-425ddfebf667
+[Source](https://towardsdatascience.com/statistics-for-machine-learning-r-squared-explained-425ddfebf667)
 --------------------------------------------------------------------------------------------------------
 
 Omar Najar.
